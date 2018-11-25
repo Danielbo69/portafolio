@@ -1,0 +1,3 @@
+if (typeof gotSegmentData != 'undefined') {
+  gotSegmentData( { "data": ["300012","4otmqg","o42d0s","tp3p5n","i6pjoz","bixwk5","ylu2pl","zog97d","1zbuul","yaa5tb","6mtkqj","lsl42m","6roqqt","6ks868","m8su7x","vnxc3w","lbson3","8vit1t","6bcqna","l8yql5","2kxy99","2xs0ev","io0re3","hkjf80","75a0ux","1xsa2h","gmgpvb","xmc93d","22wahy","48g41s","4nomb5","s6anw8","ikuqq1","32k6sl","2n19xj","w7iuu5","fnyzn5","487mi0","39ykdu","53yjio","div41d","u72zbk","wgs3dx","dr4vqs","qgsqbp","tfwecs","cph9nm","f653zc","hntb9p","vzmgok","qr4mau","nbfctz","240000","240002","240003","240004","240001","240005","240006","240007","240008","240009","240011","240012","240013","240014","240017","240015","240016","111100","110000","121100","129900","129914","111109","111112"]} );
+};

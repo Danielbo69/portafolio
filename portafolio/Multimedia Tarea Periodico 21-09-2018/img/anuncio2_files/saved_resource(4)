@@ -1,0 +1,758 @@
+(function() {
+	var ajaxurl = window.ajaxurl || '/wp-admin/admin-ajax.php',
+		data = window.wpcomVipAnalytics,
+		dataQs, percent;
+
+	if ( typeof XMLHttpRequest === 'undefined' ) {
+		return;
+	}
+
+	if ( ! data ) {
+		return;
+	}
+
+	percent = ~~data.percentToTrack;
+	if ( percent && percent < 100 && ( ~~( ( Math.random() * 100 ) + 1 ) > percent ) ) {
+		return;
+	}
+
+	dataQs = 'action=wpcom_vip_analytics';
+
+	for ( var key in data ) {
+		if ( key === 'percentToTrack' ) {
+			continue;
+		}
+		if ( data.hasOwnProperty( key ) ) {
+			dataQs += '&' +
+				encodeURIComponent( key ).replace(/%20/g, '+' ) + '=' +
+				encodeURIComponent( data[key] ).replace(/%20/g, '+' );
+		}
+	}
+
+	function sendInfo() {
+		var xhr = new XMLHttpRequest();
+		xhr.open( 'POST', ajaxurl, true );
+		xhr.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+		xhr.send( dataQs );
+	}
+
+	// Delay for some time after the document is ready to ping
+	function docReady() {
+		setTimeout( function() {
+			sendInfo();
+		}, 1500 );
+	}
+
+	if ( document.readyState === 'complete' ) {
+		docReady.apply();
+	}
+	else if ( document.addEventListener ) {
+		document.addEventListener( 'DOMContentLoaded', docReady, false );
+	}
+	else if ( document.attachEvent ) {
+		document.attachEvent( 'onreadystatechange', docReady );
+	}
+})();
+;
+(function(e,h,l,c){e.fn.sonar=function(o,n){if(typeof o==="boolean"){n=o;o=c}return e.sonar(this[0],o,n)};var f=l.body,a="scrollin",m="scrollout",b=function(r,n,t){if(r){f||(f=l.body);var s=r,u=0,v=f.offsetHeight,o=h.innerHeight||l.documentElement.clientHeight||f.clientHeight||0,q=l.documentElement.scrollTop||h.pageYOffset||f.scrollTop||0,p=r.offsetHeight||0;if(!r.sonarElemTop||r.sonarBodyHeight!==v){if(s.offsetParent){do{u+=s.offsetTop}while(s=s.offsetParent)}r.sonarElemTop=u;r.sonarBodyHeight=v}n=n===c?0:n;return(!(r.sonarElemTop+(t?0:p)<q-n)&&!(r.sonarElemTop+(t?p:0)>q+o+n))}},d={},j=0,i=function(){setTimeout(function(){var s,o,t,q,p,r,n;for(t in d){o=d[t];for(r=0,n=o.length;r<n;r++){q=o[r];s=q.elem;p=b(s,q.px,q.full);if(t===m?!p:p){if(!q.tr){if(s[t]){e(s).trigger(t);q.tr=1}else{o.splice(r,1);r--;n--}}}else{q.tr=0}}}},25)},k=function(n,o){n[o]=0},g=function(r,p){var t=p.px,q=p.full,s=p.evt,o=b(r,t,q),n=0;r[s]=1;if(s===m?!o:o){setTimeout(function(){e(r).trigger(s===m?m:a)},0);n=1}d[s].push({elem:r,px:t,full:q,tr:n});if(!j){e(h).bind("scroll",i);j=1}};e.sonar=b;d[a]=[];e.event.special[a]={add:function(n){var p=n.data||{},o=this;if(!o[a]){g(this,{px:p.distance,full:p.full,evt:a})}},remove:function(n){k(this,a)}};d[m]=[];e.event.special[m]={add:function(n){var p=n.data||{},o=this;if(!o[m]){g(o,{px:p.distance,full:p.full,evt:m})}},remove:function(n){k(this,m)}}})(jQuery,window,document);;
+(function($) {
+	lazy_load_init();
+	$( 'body' ).bind( 'post-load', lazy_load_init ); // Work with WP.com infinite scroll
+
+	function lazy_load_init() {
+		$( 'img[data-lazy-src]' ).bind( 'scrollin', { distance: 200 }, function() {
+			lazy_load_image( this );
+		});
+
+		// We need to force load gallery images in Jetpack Carousel and give up lazy-loading otherwise images don't show up correctly
+		$( '[data-carousel-extra]' ).each( function() {
+			$( this ).find( 'img[data-lazy-src]' ).each( function() {
+				lazy_load_image( this );
+			} );
+		} );
+	}
+
+	function lazy_load_image( img ) {
+		var $img = jQuery( img ),
+			src = $img.attr( 'data-lazy-src' ),
+			srcset = $img.attr( 'data-lazy-srcset' ),
+			sizes = $img.attr( 'data-lazy-sizes' );
+
+		if ( ! src || 'undefined' === typeof( src ) )
+			return;
+
+		$img.unbind( 'scrollin' ) // remove event binding
+			.hide()
+			.removeAttr( 'data-lazy-src' )
+			.removeAttr( 'data-lazy-srcset' )
+			.removeAttr( 'data-lazy-sizes' )
+			.attr( 'data-lazy-loaded', 'true' );
+
+		img.src = src;
+		if ( srcset ) {
+			img.srcset = srcset;
+		}
+		if ( sizes ) {
+			img.sizes = sizes;
+		}
+		$img.fadeIn();
+	}
+})(jQuery);
+;
+/***
+ * Warning: This file is remotely enqueued in Jetpack's Masterbar module.
+ * Changing it will also affect Jetpack sites.
+ */
+jQuery( document ).ready( function( $, wpcom ) {
+	var masterbar,
+		menupops = $( 'li#wp-admin-bar-blog.menupop, li#wp-admin-bar-newdash.menupop, li#wp-admin-bar-my-account.menupop' ),
+		newmenu = $( '#wp-admin-bar-new-post-types' );
+
+	// Unbind hoverIntent, we want clickable menus.
+	menupops
+		.unbind( 'mouseenter mouseleave' )
+		.removeProp( 'hoverIntent_t' )
+		.removeProp( 'hoverIntent_s' )
+		.on( 'mouseover', function(e) {
+			var li = $(e.target).closest( 'li.menupop' );
+			menupops.not(li).removeClass( 'ab-hover' );
+			li.toggleClass( 'ab-hover' );
+		} )
+		.on( 'click touchstart', function(e) {
+			var $target = $( e.target );
+
+			if ( masterbar.focusSubMenus( $target ) ) {
+				return;
+			}
+
+			e.preventDefault();
+			masterbar.toggleMenu( $target );
+		} );
+
+	masterbar = {
+		focusSubMenus: function( $target ) {
+			// Handle selection of menu items
+			if ( ! $target.closest( 'ul' ).hasClass( 'ab-top-menu' ) ) {
+				$target
+					.closest( 'li' );
+
+				return true;
+			}
+
+			return false;
+		},
+
+		toggleMenu: function( $target ) {
+			var $li = $target.closest( 'li.menupop' ),
+				$html = $( 'html' );
+
+			$( 'body' ).off( 'click.ab-menu' );
+			$( '#wpadminbar li.menupop' ).not($li).removeClass( 'ab-active wpnt-stayopen wpnt-show' );
+
+			if ( $li.hasClass( 'ab-active' ) ) {
+				$li.removeClass( 'ab-active' );
+				$html.removeClass( 'ab-menu-open' );
+			} else {
+				$li.addClass( 'ab-active' );
+				$html.addClass( 'ab-menu-open' );
+
+				$( 'body' ).on( 'click.ab-menu', function( e ) {
+					if ( ! $( e.target ).parents( '#wpadminbar' ).length ) {
+						e.preventDefault();
+						masterbar.toggleMenu( $li );
+						$( 'body' ).off( 'click.ab-menu' );
+					}
+				} );
+			}
+		}
+	};
+} );;
+/*globals JSON */
+( function( $ ) {
+	var eventName = 'wpcom_masterbar_click';
+
+	var linksTracksEvents = {
+		//top level items
+		'wp-admin-bar-blog'                        : 'my_sites',
+		'wp-admin-bar-newdash'                     : 'reader',
+		'wp-admin-bar-ab-new-post'                 : 'write_button',
+		'wp-admin-bar-my-account'                  : 'my_account',
+		'wp-admin-bar-notes'                       : 'notifications',
+		//my sites - top items
+		'wp-admin-bar-switch-site'                 : 'my_sites_switch_site',
+		'wp-admin-bar-blog-info'                   : 'my_sites_site_info',
+		'wp-admin-bar-site-view'                   : 'my_sites_view_site',
+		'wp-admin-bar-blog-stats'                  : 'my_sites_site_stats',
+		'wp-admin-bar-plan'                        : 'my_sites_plan',
+		'wp-admin-bar-plan-badge'                  : 'my_sites_plan_badge',
+		//my sites - manage
+		'wp-admin-bar-edit-page'                   : 'my_sites_manage_site_pages',
+		'wp-admin-bar-new-page-badge'              : 'my_sites_manage_add_page',
+		'wp-admin-bar-edit-post'                   : 'my_sites_manage_blog_posts',
+		'wp-admin-bar-new-post-badge'              : 'my_sites_manage_add_post',
+		'wp-admin-bar-edit-attachment'             : 'my_sites_manage_media',
+		'wp-admin-bar-new-attachment-badge'        : 'my_sites_manage_add_media',
+		'wp-admin-bar-comments'                    : 'my_sites_manage_comments',
+		'wp-admin-bar-edit-jetpack-testimonial'    : 'my_sites_manage_testimonials',
+		'wp-admin-bar-new-jetpack-testimonial'     : 'my_sites_manage_add_testimonial',
+		'wp-admin-bar-edit-jetpack-portfolio'      : 'my_sites_manage_portfolio',
+		'wp-admin-bar-new-jetpack-portfolio'       : 'my_sites_manage_add_portfolio',
+		//my sites - personalize
+		'wp-admin-bar-themes'                      : 'my_sites_personalize_themes',
+		'wp-admin-bar-cmz'                         : 'my_sites_personalize_themes_customize',
+		//my sites - configure
+		'wp-admin-bar-sharing'                     : 'my_sites_configure_sharing',
+		'wp-admin-bar-people'                      : 'my_sites_configure_people',
+		'wp-admin-bar-people-add'                  : 'my_sites_configure_people_add_button',
+		'wp-admin-bar-plugins'                     : 'my_sites_configure_plugins',
+		'wp-admin-bar-domains'                     : 'my_sites_configure_domains',
+		'wp-admin-bar-domains-add'                 : 'my_sites_configure_add_domain',
+		'wp-admin-bar-blog-settings'               : 'my_sites_configure_settings',
+		'wp-admin-bar-legacy-dashboard'            : 'my_sites_configure_wp_admin',
+		//reader
+		'wp-admin-bar-followed-sites'              : 'reader_followed_sites',
+		'wp-admin-bar-reader-followed-sites-manage': 'reader_manage_followed_sites',
+		'wp-admin-bar-discover-discover'           : 'reader_discover',
+		'wp-admin-bar-discover-search'             : 'reader_search',
+		'wp-admin-bar-my-activity-my-likes'        : 'reader_my_likes',
+		//account
+		'wp-admin-bar-user-info'                   : 'my_account_user_name',
+		// account - profile
+		'wp-admin-bar-my-profile'                  : 'my_account_profile_my_profile',
+		'wp-admin-bar-account-settings'            : 'my_account_profile_account_settings',
+		'wp-admin-bar-billing'                     : 'my_account_profile_manage_purchases',
+		'wp-admin-bar-security'                    : 'my_account_profile_security',
+		'wp-admin-bar-notifications'               : 'my_account_profile_notifications',
+		//account - special
+		'wp-admin-bar-get-apps'                    : 'my_account_special_get_apps',
+		'wp-admin-bar-next-steps'                  : 'my_account_special_next_steps',
+		'wp-admin-bar-help'                        : 'my_account_special_help',
+	};
+
+	var notesTracksEvents = {
+		openSite: function( data ) {
+			return {
+				clicked: 'masterbar_notifications_panel_site',
+				site_id: data.siteId
+			};
+		},
+		openPost: function( data ) {
+			return {
+				clicked: 'masterbar_notifications_panel_post',
+				site_id: data.siteId,
+				post_id: data.postId
+			};
+		},
+		openComment: function( data ) {
+			return {
+				clicked: 'masterbar_notifications_panel_comment',
+				site_id: data.siteId,
+				post_id: data.postId,
+				comment_id: data.commentId
+			};
+		}
+	};
+
+	function recordTracksEvent( eventProps ) {
+		eventProps = eventProps || {};
+		window._tkq = window._tkq || [];
+		window._tkq.push( [ 'recordEvent', eventName, eventProps ] );
+	}
+
+	function parseJson( s, defaultValue ) {
+		try {
+			return JSON.parse( s );
+		} catch ( e ) {
+			return defaultValue;
+		}
+	}
+
+	$( document ).ready( function() {
+		var trackableLinks = '.mb-trackable .ab-item:not(div),' +
+			'#wp-admin-bar-notes .ab-item,' +
+			'#wp-admin-bar-user-info .ab-item,' +
+			'.mb-trackable .ab-secondary';
+
+		$( trackableLinks ).on( 'click touchstart', function( e ) {
+			var $target = $( e.target ),
+				$parent = $target.closest( 'li' );
+
+			if ( ! $parent ) {
+				return;
+			}
+
+			var trackingId = $target.attr( 'ID' ) || $parent.attr( 'ID' );
+
+			if ( ! linksTracksEvents.hasOwnProperty( trackingId ) ) {
+				return;
+			}
+
+			var eventProps = { 'clicked': linksTracksEvents[ trackingId ] };
+
+			recordTracksEvent( eventProps );
+		} );
+	} );
+
+	// listen for postMessage events from the notifications iframe
+	$( window ).on( 'message', function( e ) {
+		var event = ! e.data && e.originalEvent.data ? e.originalEvent : e;
+		if ( event.origin !== 'https://widgets.wp.com' ) {
+			return;
+		}
+
+		var data = ( 'string' === typeof event.data ) ? parseJson( event.data, {} ) : event.data;
+		if ( 'notesIframeMessage' !== data.type ) {
+			return;
+		}
+
+		var eventData = notesTracksEvents[ data.action ];
+		if ( ! eventData ) {
+			return;
+		}
+
+		recordTracksEvent( eventData( data ) );
+	} );
+
+} )( jQuery );
+;
+/* global WPCOM_sharing_counts, grecaptcha */
+/* jshint unused:false */
+var sharing_js_options;
+if ( sharing_js_options && sharing_js_options.counts ) {
+	var WPCOMSharing = {
+		done_urls : [],
+		get_counts : function() {
+			var url, requests, id, service, service_request;
+
+			if ( 'undefined' === typeof WPCOM_sharing_counts ) {
+				return;
+			}
+
+			for ( url in WPCOM_sharing_counts ) {
+				id = WPCOM_sharing_counts[ url ];
+
+				if ( 'undefined' !== typeof WPCOMSharing.done_urls[ id ] ) {
+					continue;
+				}
+
+				requests = {
+					// Pinterest handles share counts for both http and https
+					pinterest: [
+						window.location.protocol +
+						'//api.pinterest.com/v1/urls/count.json?callback=WPCOMSharing.update_pinterest_count&url=' +
+						encodeURIComponent( url )
+					],
+					// Facebook protocol summing has been shown to falsely double counts, so we only request the current URL
+					facebook: [
+						window.location.protocol +
+						'//graph.facebook.com/?callback=WPCOMSharing.update_facebook_count&ids=' +
+						encodeURIComponent( url )
+					]
+				};
+
+				for ( service in requests ) {
+					if ( ! jQuery( 'a[data-shared=sharing-' + service + '-' + id  + ']' ).length ) {
+						continue;
+					}
+
+					while ( ( service_request = requests[ service ].pop() ) ) {
+						jQuery.getScript( service_request );
+					}
+
+					WPCOMSharing.bump_sharing_count_stat( service );
+				}
+
+				WPCOMSharing.done_urls[ id ] = true;
+			}
+		},
+
+		// get the version of the url that was stored in the dom (sharing-$service-URL)
+		get_permalink: function( url ) {
+			if ( 'https:' === window.location.protocol ) {
+				url = url.replace( /^http:\/\//i, 'https://' );
+			} else {
+				url = url.replace( /^https:\/\//i, 'http://' );
+			}
+
+			return url;
+		},
+		update_facebook_count: function( data ) {
+			var url, permalink;
+
+			if ( ! data ) {
+				return;
+			}
+
+			for ( url in data ) {
+				if ( ! data.hasOwnProperty( url ) || ! data[ url ].share || ! data[ url ].share.share_count ) {
+					continue;
+				}
+
+				permalink = WPCOMSharing.get_permalink( url );
+
+				if ( ! ( permalink in WPCOM_sharing_counts ) ) {
+					continue;
+				}
+
+				WPCOMSharing.inject_share_count( 'sharing-facebook-' + WPCOM_sharing_counts[ permalink ], data[ url ].share.share_count );
+			}
+		},
+		update_pinterest_count : function( data ) {
+			if ( 'undefined' !== typeof data.count && ( data.count * 1 ) > 0 ) {
+				WPCOMSharing.inject_share_count( 'sharing-pinterest-' + WPCOM_sharing_counts[ data.url ], data.count );
+			}
+		},
+		inject_share_count : function( id, count ) {
+			var $share = jQuery( 'a[data-shared=' + id + '] > span');
+			$share.find( '.share-count' ).remove();
+			$share.append( '<span class="share-count">' + WPCOMSharing.format_count( count ) + '</span>' );
+		},
+		format_count : function( count ) {
+			if ( count < 1000 ) {
+				return count;
+			}
+			if ( count >= 1000 && count < 10000 ) {
+				return String( count ).substring( 0, 1 ) + 'K+';
+			}
+			return '10K+';
+		},
+		bump_sharing_count_stat: function( service ) {
+			new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv&x_sharing-count-request=' + service + '&r=' + Math.random();
+		}
+	};
+}
+
+(function($){
+	var $body, $sharing_email;
+
+	$.fn.extend( {
+		share_is_email: function() {
+			return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test( this.val() );
+		}
+	} );
+
+	$body = $( document.body ).on( 'post-load', WPCOMSharing_do );
+	$( document ).ready( function() {
+		$sharing_email = $( '#sharing_email' );
+		$body.append( $sharing_email );
+		WPCOMSharing_do();
+	} );
+
+	function WPCOMSharing_do() {
+		var $more_sharing_buttons;
+		if ( 'undefined' !== typeof WPCOMSharing ) {
+			WPCOMSharing.get_counts();
+		}
+		$more_sharing_buttons = $( '.sharedaddy a.sharing-anchor' );
+
+		$more_sharing_buttons.click( function() {
+			return false;
+		} );
+
+		$( '.sharedaddy a' ).each( function() {
+			if ( $( this ).attr( 'href' ) && $( this ).attr( 'href' ).indexOf( 'share=' ) !== -1 ) {
+				$( this ).attr( 'href', $( this ).attr( 'href' ) + '&nb=1' );
+			}
+		} );
+
+		// Show hidden buttons
+
+		// Touchscreen device: use click.
+		// Non-touchscreen device: use click if not already appearing due to a hover event
+		$more_sharing_buttons.on( 'click', function() {
+			var $more_sharing_button = $( this ),
+				$more_sharing_pane = $more_sharing_button.parents( 'div:first' ).find( '.inner' );
+
+			if ( $more_sharing_pane.is( ':animated' ) ) {
+				// We're in the middle of some other event's animation
+				return;
+			}
+
+			if ( true === $more_sharing_pane.data( 'justSlid' ) ) {
+				// We just finished some other event's animation - don't process click event so that slow-to-react-clickers don't get confused
+				return;
+			}
+
+			$sharing_email.slideUp( 200 );
+
+			$more_sharing_pane.css( {
+				left: $more_sharing_button.position().left + 'px',
+				top: $more_sharing_button.position().top + $more_sharing_button.height() + 3 + 'px'
+			} ).slideToggle( 200 );
+		} );
+
+		if ( document.ontouchstart === undefined ) {
+			// Non-touchscreen device: use hover/mouseout with delay
+			$more_sharing_buttons.hover( function() {
+				var $more_sharing_button = $( this ),
+					$more_sharing_pane = $more_sharing_button.parents( 'div:first' ).find( '.inner' ),
+					timer;
+
+				if ( ! $more_sharing_pane.is( ':animated' ) ) {
+					// Create a timer to make the area appear if the mouse hovers for a period
+					timer = setTimeout( function() {
+						var handler_item_leave, handler_item_enter, handler_original_leave, handler_original_enter, close_it;
+
+						$sharing_email.slideUp( 200 );
+
+						$more_sharing_pane.data( 'justSlid', true );
+						$more_sharing_pane.css( {
+							left: $more_sharing_button.position().left + 'px',
+							top: $more_sharing_button.position().top + $more_sharing_button.height() + 3 + 'px'
+						} ).slideDown( 200, function() {
+							// Mark the item as have being appeared by the hover
+							$more_sharing_button.data( 'hasoriginal', true ).data( 'hasitem', false );
+
+							setTimeout( function() {
+								$more_sharing_pane.data( 'justSlid', false );
+							}, 300 );
+
+							if ( $more_sharing_pane.find( '.share-google-plus-1' ).length ) {
+								// The pane needs to stay open for the Google+ Button
+								return;
+							}
+
+							$more_sharing_pane.mouseleave( handler_item_leave ).mouseenter( handler_item_enter );
+							$more_sharing_button.mouseleave( handler_original_leave ).mouseenter( handler_original_enter );
+						} );
+
+						// The following handlers take care of the mouseenter/mouseleave for the share button and the share area - if both are left then we close the share area
+						handler_item_leave = function() {
+							$more_sharing_button.data( 'hasitem', false );
+
+							if ( $more_sharing_button.data( 'hasoriginal' ) === false ) {
+								var timer = setTimeout( close_it, 800 );
+								$more_sharing_button.data( 'timer2', timer );
+							}
+						};
+
+						handler_item_enter = function() {
+							$more_sharing_button.data( 'hasitem', true );
+							clearTimeout( $more_sharing_button.data( 'timer2' ) );
+						};
+
+						handler_original_leave = function() {
+							$more_sharing_button.data( 'hasoriginal', false );
+
+							if ( $more_sharing_button.data( 'hasitem' ) === false ) {
+								var timer = setTimeout( close_it, 800 );
+								$more_sharing_button.data( 'timer2', timer );
+							}
+						};
+
+						handler_original_enter = function() {
+							$more_sharing_button.data( 'hasoriginal', true );
+							clearTimeout( $more_sharing_button.data( 'timer2' ) );
+						};
+
+						close_it = function() {
+							$more_sharing_pane.data( 'justSlid', true );
+							$more_sharing_pane.slideUp( 200, function() {
+								setTimeout( function() {
+									$more_sharing_pane.data( 'justSlid', false );
+								}, 300 );
+							} );
+
+							// Clear all hooks
+							$more_sharing_button.unbind( 'mouseleave', handler_original_leave ).unbind( 'mouseenter', handler_original_enter );
+							$more_sharing_pane.unbind( 'mouseleave', handler_item_leave ).unbind( 'mouseenter', handler_item_leave );
+							return false;
+						};
+					}, 200 );
+
+					// Remember the timer so we can detect it on the mouseout
+					$more_sharing_button.data( 'timer', timer );
+				}
+			}, function() {
+				// Mouse out - remove any timer
+				$more_sharing_buttons.each( function() {
+					clearTimeout( $( this ).data( 'timer' ) );
+				} );
+				$more_sharing_buttons.data( 'timer', false );
+			} );
+		} else {
+			$( document.body ).addClass( 'jp-sharing-input-touch' );
+		}
+
+		$( document ).click(function() {
+
+			// Click outside
+			// remove any timer
+			$more_sharing_buttons.each( function() {
+				clearTimeout( $( this ).data( 'timer' ) );
+			} );
+			$more_sharing_buttons.data( 'timer', false );
+
+			// slide down forcibly
+			$( '.sharedaddy .inner' ).slideUp();
+
+		});
+
+		// Add click functionality
+		$( '.sharedaddy ul' ).each( function() {
+
+			if ( 'yep' === $( this ).data( 'has-click-events' ) ) {
+				return;
+			}
+			$( this ).data( 'has-click-events', 'yep' );
+
+			var printUrl = function ( uniqueId, urlToPrint ) {
+				$( 'body:first' ).append( '<iframe style="position:fixed;top:100;left:100;height:1px;width:1px;border:none;" id="printFrame-' + uniqueId + '" name="printFrame-' + uniqueId + '" src="' + urlToPrint + '" onload="frames[\'printFrame-' + uniqueId + '\'].focus();frames[\'printFrame-' + uniqueId + '\'].print();"></iframe>' );
+			};
+
+			// Print button
+			$( this ).find( 'a.share-print' ).click( function() {
+				var ref = $( this ).attr( 'href' ),
+					do_print = function() {
+						if ( ref.indexOf( '#print' ) === -1 ) {
+							var uid = new Date().getTime();
+							printUrl( uid , ref );
+						} else {
+							print();
+						}
+					};
+
+				// Is the button in a dropdown?
+				if ( $( this ).parents( '.sharing-hidden' ).length > 0 ) {
+					$( this ).parents( '.inner' ).slideUp( 0, function() {
+						do_print();
+					} );
+				} else {
+					do_print();
+				}
+
+				return false;
+			} );
+
+			// Press This button
+			$( this ).find( 'a.share-press-this' ).click( function() {
+				var s = '';
+
+				if ( window.getSelection ) {
+					s = window.getSelection();
+				} else if( document.getSelection ) {
+					s = document.getSelection();
+				} else if( document.selection ) {
+					s = document.selection.createRange().text;
+				}
+
+				if ( s ) {
+					$( this ).attr( 'href', $( this ).attr( 'href' ) + '&sel=' + encodeURI( s ) );
+				}
+
+				if ( !window.open( $( this ).attr( 'href' ), 't', 'toolbar=0,resizable=1,scrollbars=1,status=1,width=720,height=570' ) ) {
+					document.location.href = $( this ).attr( 'href' );
+				}
+
+				return false;
+			} );
+
+			// Email button
+			$( 'a.share-email', this ).on( 'click', function() {
+				var url = $( this ).attr( 'href' );
+				var currentDomain = window.location.protocol + '//' + window.location.hostname + '/';
+				if ( url.indexOf( currentDomain ) !== 0 ) {
+					return true;
+				}
+
+				if ( $sharing_email.is( ':visible' ) ) {
+					$sharing_email.slideUp( 200 );
+				} else {
+					$( '.sharedaddy .inner' ).slideUp();
+
+					$( '#sharing_email .response' ).remove();
+					$( '#sharing_email form' ).show();
+					$( '#sharing_email form input[type=submit]' ).removeAttr( 'disabled' );
+					$( '#sharing_email form a.sharing_cancel' ).show();
+
+					// Reset reCATPCHA if exists.
+					if ( 'object' === typeof grecaptcha && 'function' === typeof grecaptcha.reset && window.___grecaptcha_cfg.count ) {
+						grecaptcha.reset();
+					}
+
+					// Show dialog
+					$sharing_email.css( {
+						left: $( this ).offset().left + 'px',
+						top: $( this ).offset().top + $( this ).height() + 'px'
+					} ).slideDown( 200 );
+
+					// Hook up other buttons
+					$( '#sharing_email a.sharing_cancel' ).unbind( 'click' ).click( function() {
+						$( '#sharing_email .errors' ).hide();
+						$sharing_email.slideUp( 200 );
+						$( '#sharing_background' ).fadeOut();
+						return false;
+					} );
+
+					// Submit validation
+					$( '#sharing_email input[type=submit]' ).unbind( 'click' ).click( function() {
+						var form = $( this ).parents( 'form' );
+						var source_email_input = form.find( 'input[name=source_email]' );
+						var target_email_input = form.find( 'input[name=target_email]' );
+
+						// Disable buttons + enable loading icon
+						$( this ).prop( 'disabled', true );
+						form.find( 'a.sharing_cancel' ).hide();
+						form.find( 'img.loading' ).show();
+
+						$( '#sharing_email .errors' ).hide();
+						$( '#sharing_email .error' ).removeClass( 'error' );
+
+						if ( ! source_email_input.share_is_email() ) {
+							source_email_input.addClass( 'error' );
+						}
+
+						if ( ! target_email_input.share_is_email() ) {
+							target_email_input.addClass( 'error' );
+						}
+
+						if ( $( '#sharing_email .error' ).length === 0 ) {
+							// AJAX send the form
+							$.ajax( {
+								url: url,
+								type: 'POST',
+								data: form.serialize(),
+								success: function( response ) {
+									form.find( 'img.loading' ).hide();
+
+									if ( response === '1' || response === '2' || response === '3' ) {
+										$( '#sharing_email .errors-' + response ).show();
+										form.find( 'input[type=submit]' ).removeAttr( 'disabled' );
+										form.find( 'a.sharing_cancel' ).show();
+
+										if ( 'object' === typeof grecaptcha && 'function' === typeof grecaptcha.reset ) {
+											grecaptcha.reset();
+										}
+									}
+									else {
+										$( '#sharing_email form' ).hide();
+										$sharing_email.append( response );
+										$( '#sharing_email a.sharing_cancel' ).click( function() {
+											$sharing_email.slideUp( 200 );
+											$( '#sharing_background' ).fadeOut();
+											return false;
+										} );
+									}
+								}
+							} );
+
+							return false;
+						}
+
+						form.find( 'img.loading' ).hide();
+						form.find( 'input[type=submit]' ).removeAttr( 'disabled' );
+						form.find( 'a.sharing_cancel' ).show();
+						$( '#sharing_email .errors-1' ).show();
+
+						return false;
+					} );
+				}
+
+				return false;
+			} );
+		} );
+
+		$( 'li.share-email, li.share-custom a.sharing-anchor' ).addClass( 'share-service-visible' );
+	}
+})( jQuery );
+;

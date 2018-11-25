@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  /* background-color: whitesmoke; */
+  background-image: url(../img/Fondos-.png); 
+  background-attachment: fixed;
+  /* background-repeat: no-repeat;  */
+}
+
+#contenedor {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 100% !important;
+}
+#navegacion {
+  background: #02223abd;
+  width: 100%;
+  /* position: fixed; */
+}
+
+#navegacion ul {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+#navegacion ul li {
+  list-style: none;
+  padding: 15px;
+  display: flex;
+}
+
+#navegacion ul li:hover {
+  list-style: none;
+  padding: 10px;
+  padding-bottom: 0px;
+  display: flex;
+  border-bottom: 1px solid #fff;
+}
+
+#navegacion a {
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+}
+
+#navegacion a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+#contenido-top {
+  padding: 5%;
+  width: 100%;
+}
+
+#audi-top {
+  display: flex;
+  justify-content: center;
+}
+#audi-top p {
+  font-size: 15px;
+}
+
+#automovilismo {
+  padding-top: 10px;
+}
+
+#automovilismo-contenido {
+  display: flex;
+  justify-content: center;
+}
+
+#pie {
+  width: 100%;
+  /* height: 70px; */
+  color: #fff;
+  background: #02223abd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* position: fixed; */
+  /* position: fixed; */
+}
+
+img {
+  width: 100%;
+}
+
+label {
+  margin-left: 10px;
+  font-size: 25px;
+  color: #c11e10;
+}
+
+.foot {
+  background: #0d395a;
+  padding: 25px;
+}
+
+.label-titulo{
+  width: 74%;
+  padding: 5px;
+}
+
+.input-contac {
+  width: 30%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+/*  CAPAS CONTENEDORAS  */
+ 
+#izquierda  {
+    width: 170px;
+    float: left;
+    }
+   
+  .centro {
+    width: 100%;
+    /* float: left; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    #contenido-bottom {
+      padding: 5%;
+      width: 100%;
+      background: #00000091;
+      color: #fff;
+    }
+   
+  /*  ELEMENTOS DEL MENU LATERAL  */
+   
+  #menu {
+    padding:0;
+    margin:0 auto;
+    list-style-type:none;
+    width:160px;
+    height:312px;
+    }
+  #menu li a {
+    height:30px;
+    width:160px;
+    float:left;
+    border-bottom:2px solid #fff;
+    overflow: hidden;
+    }
+  #menu li a img {
+    border:0;
+    }
+  #menu li a:hover {
+    height:120px;
+    }
+   
+  /*  ELEMENTOS DEL MENU SUPERIOR */
+   
+  #menu2 {
+    padding:0;
+    margin:0 auto;
+    list-style-type:none;
+    height:120px;
+    width:354px;
+    }
+  #menu2 li a {
+    width:30px;
+    height:120px;
+    float:left;
+    border-right:2px solid #fff;
+    overflow: hidden;
+    }
+  #menu2 li a img {
+    border:0;
+    }
+  #menu2 li a:hover {
+    background:#eee;
+    width:160px;
+    }
+   
+  /*  ELEMENTOS DE LA GALERIA DE IMAGENES */
+   
+  #galeria {
+    padding: 0;
+    margin: 57px auto 0 auto;
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
+    /* border: 1px solid #888; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    }
+  #galeria li {
+    width: 100%;
+    height: 300px;
+    float: left;
+    border-left: 2px solid #000;
+    }
+  #galeria li img {
+    width: 100%;
+    height: 300px;
+    float: left;
+    /* border-left: 2px solid #000; */
+    }
+  #galeria li:hover {
+    background:#eee;
+    width:400px;
+    }
+  #galeria li:hover img {
+    width:400px;
+    }

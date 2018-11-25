@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <h1>Ecuación de 2do grado</h1>
+    </div>
+
+    <script>
+    var a = parseInt(prompt("Ingrese A"));
+    document.write("a = " + a + "<br>"); 
+    var b = parseInt(prompt("Ingrese B"));
+    document.write("b = " + b + "<br>");
+    var c = parseInt(prompt("Ingrese C"));
+    document.write("c = " + c + "<br>");
+    var Sol1 = (-b+(Math.sqrt(Math.pow(b,2)-(4*a*c))))/(2*a); 
+    document.write("La primera solución  es: " + Sol1 + "<br>");
+    var Sol2 = (-b-(Math.sqrt(Math.pow(b,2)-(4*a*c))))/(2*a);
+    document.write("La segunda solución  es: " + Sol2 + "<br>");
+    
+    alert("X1 = " + Sol1);
+    alert("X2 = " + Sol2);
+    </script>
+</body>
+</html>

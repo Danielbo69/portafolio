@@ -1,0 +1,334 @@
+html,
+body {
+    width: 100%;
+    background: #d4d4d4e1;
+    margin: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#encabezado {
+    width: 100%;
+    height: auto;
+    background: #05053471;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    /* background-image: url("../img/ModifiedCar3.jpg"); */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.encabezadoimagen {
+    width: 100%;
+    height: 445px;
+    background: #8b0000;
+}
+
+#contenedor {
+    width: 100%;
+    height: 100%;
+}
+
+#navegacion {
+    background: #00000080;
+    color: #fff;
+    /* position: fixed; */
+    height: 320px;
+}
+
+#navegacion ul {
+    height: 100%;
+    padding: 15px;
+    font-size: 17px;
+}
+
+#navegacion ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+#navegacion a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+#navegacion a:hover {
+    background: #c52e2d;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navegacionIzquierda {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+#cuerpo {
+    width: 100%;
+    height: 100%;
+    display: table;
+    background-image: url("../img/H2000.jpg");
+    background-attachment: fixed;
+    /* background-repeat: no-repeat; */
+}
+
+#pie {
+    width: 100%;
+    /* height: 100px; */
+    color: #fff;
+    background: #00000080;
+    /* #c52e2d75 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* position: fixed; */
+    /* position: fixed; */
+}
+
+.foot {
+    background: #0d395a;
+    padding: 25px;
+}
+
+.input-contac {
+    width: 30%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#Areatext {
+    width: 30%;
+    max-width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.label-titulo{
+    width: 74%;
+    padding: 5px;
+}
+
+#parrafo-mision {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-mision {
+    width: 215px;
+    height: 190px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.img-mision:hover {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.caja-text {
+    width: 260px;
+    height: 25px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+    outline: 0PX;
+}
+
+.caja-area {
+    max-width: 22%;
+    max-height: 22%;
+    min-width: 21%;
+    min-height: 21%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: 0PX;
+}
+
+.titulos-label {
+    width: 270px;
+    font-size: 13px;
+}
+
+#historia {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    padding: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#areas-estilo {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    padding: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#estilosTuneo {
+    width: 70%;
+    height: 100%;
+    padding: 15%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.seccion {
+    width: 96%;
+    margin: 1%;
+    padding: 1%;
+}
+
+.seccion p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.aside {
+    width: 50%;
+    padding: 1%;
+    margin: 1%;
+    margin-bottom: 2%;
+}
+
+.aside p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.fondo {
+    padding: 2%;
+    width: 97%;
+    background: #00000091;
+    margin: 1%;
+    margin-bottom: 2%;
+}
+
+.titulos-historia {
+    color: #c52e2d;
+}
+
+.titulo-areas {
+    color: #c52e2d;
+}
+
+.fondo-titulos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.estilos-titulo {
+    width: 64%;
+    background: #00000090;
+    height: 230px;
+    color: #c52e2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenhistoriatuneo {
+    width: 85%;
+    height: 360px;
+    border-radius: 5px;
+}
+
+.fototuneo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.imagenesorigen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+    padding: 20px;
+}
+
+.imgAlemania {
+    width: 100%;
+    height: 147px;
+}
+
+.imgUsa {
+    width: 100%;
+    height: 147px;
+}
+
+.imgJapon {
+    width: 100%;
+    height: 147px;
+}
+
+.estilos-tuneo {
+    display: flex;
+    justify-content: center;
+}
+
+.enlaces {
+    background: #00000080;
+    color: #fff;
+    /* position: fixed; */
+    height: 320px;
+}
+
+.enlacesDerecha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enlacesYnavegacion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+}
+
+.enlaces ul {
+    height: 100%;
+    padding: 14px;
+}
+
+.enlaces ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+.enlaces a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+}

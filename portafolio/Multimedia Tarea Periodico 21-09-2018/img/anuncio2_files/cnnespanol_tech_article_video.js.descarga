@@ -1,0 +1,61 @@
+
+AdFuel.registry.push([
+{
+  "rktr_deployed_date": "2017-11-29 13:54:17",
+  "rktr_slot_id": "page",
+  "rktr_id": "cnnespanol_tech_article_video",
+  "gpt_id": "8663477",
+  "site": "cnn_espanol",
+  "root": "ESPANOL",
+  "targeting": []
+}
+,
+{
+  "rktr_slot_id": "ad_bnr_atf_01",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[320,50],[728,90],[970,90],[970,250]],
+  "targeting": [["pos",["bnr_atf_01"]]],
+  "responsive":[[["1024", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["980", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["640", "0"], [["728", "90"]]], [["0", "0"], [["320", "50"]]]]
+}
+,
+{
+  "rktr_slot_id": "ad_bnr_btf_01",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[320,50],[728,90],[970,90],[970,250]],
+  "targeting": [["pos",["bnr_btf_01"]]],
+  "responsive":[[["1024", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["980", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["640", "0"], [["728", "90"]]], [["0", "0"], ["suppress"]]]
+}
+,
+{
+  "rktr_slot_id": "ad_rect_atf_01",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[300,250]],
+  "targeting": [["pos",["rect_atf_01"]]],
+  "responsive":[[["1024", "0"], [["300", "250"]]], [["980", "0"], [["300", "250"]]], [["640", "0"], [["300", "250"]]], [["0", "0"], [["300", "250"]]]]
+}
+,
+{
+  "rktr_slot_id": "ad_oop_float_01",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[1,1]],
+  "targeting": [["pos",["oop_float_01"]]],
+  "responsive":[[["1024", "0"], [["1", "1"]]], [["980", "0"], [["1", "1"]]], [["640", "0"], [["1", "1"]]], [["0", "0"], [["1", "1"]]]]
+}
+,
+{
+  "rktr_slot_id": "ad_bnr_btf_02",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[320,50],[728,90],[970,90],[970,250]],
+  "targeting": [["pos",["bnr_btf_02"]]],
+  "responsive":[[["1024", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["980", "0"], [["970", "250"], ["970", "90"], ["728", "90"]]], [["640", "0"], [["728", "90"]]], [["0", "0"], ["suppress"]]]
+}
+,
+{
+  "rktr_slot_id": "ad_nat_btf_01",
+  "rktr_ad_id": "Espanol/tech/article/vls",
+  "sizes": [[1,2]],
+  "targeting": [["pos",["nat_btf_01"]],["strnativekey",["T2QMsHutmu98NEPhpDrUtNYr"]]],
+  "responsive":[[["1024", "0"], [["1", "2"]]], [["980", "0"], [["1", "2"]]], [["640", "0"], [["1", "2"]]], [["0", "0"], [["1", "2"]]]]
+}
+
+]);

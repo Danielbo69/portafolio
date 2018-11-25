@@ -1,0 +1,39 @@
+(function(window){"use strict";if(typeof window.performance==="undefined"){window.performance={};}
+window._perfRefForUserTimingPolyfill=window.performance;window.performance.userTimingJsNow=false;window.performance.userTimingJsNowPrefixed=false;window.performance.userTimingJsUserTiming=false;window.performance.userTimingJsUserTimingPrefixed=false;window.performance.userTimingJsPerformanceTimeline=false;window.performance.userTimingJsPerformanceTimelinePrefixed=false;var prefixes=[];var methods=[];var methodTest=null;var i,j;if(typeof window.performance.now!=="function"){window.performance.userTimingJsNow=true;methods=["webkitNow","msNow","mozNow"];for(i=0;i<methods.length;i++){if(typeof window.performance[methods[i]]==="function"){window.performance.now=window.performance[methods[i]];window.performance.userTimingJsNowPrefixed=true;break;}}
+var nowOffset=+(new Date());if(window.performance.timing&&window.performance.timing.navigationStart){nowOffset=window.performance.timing.navigationStart;}else if(typeof process!=="undefined"&&typeof process.hrtime==="function"){nowOffset=process.hrtime();window.performance.now=function(){var time=process.hrtime(nowOffset);return time[0]*1e3+time[1]*1e-6;}}
+if(typeof window.performance.now!=="function"){if(Date.now){window.performance.now=function(){return Date.now()-nowOffset;};}else{window.performance.now=function(){return+(new Date())-nowOffset;};}}}
+var addToPerformanceTimeline=function(){};var clearEntriesFromPerformanceTimeline=function(){};var performanceTimeline=[];var performanceTimelineRequiresSort=false;var hasNativeGetEntriesButNotUserTiming=false;if(typeof window.performance.getEntries!=="function"||typeof window.performance.mark!=="function"){if(typeof window.performance.getEntries==="function"&&typeof window.performance.mark!=="function"){hasNativeGetEntriesButNotUserTiming=true;}
+window.performance.userTimingJsPerformanceTimeline=true;prefixes=["webkit","moz"];methods=["getEntries","getEntriesByName","getEntriesByType"];for(i=0;i<methods.length;i++){for(j=0;j<prefixes.length;j++){methodTest=prefixes[j]+methods[i].substr(0,1).toUpperCase()+methods[i].substr(1);if(typeof window.performance[methodTest]==="function"){window.performance[methods[i]]=window.performance[methodTest];window.performance.userTimingJsPerformanceTimelinePrefixed=true;}}}
+addToPerformanceTimeline=function(obj){performanceTimeline.push(obj);if(obj.entryType==="measure"){performanceTimelineRequiresSort=true;}};var ensurePerformanceTimelineOrder=function(){if(!performanceTimelineRequiresSort){return;}
+performanceTimeline.sort(function(a,b){return a.startTime-b.startTime;});performanceTimelineRequiresSort=false;};clearEntriesFromPerformanceTimeline=function(entryType,name){i=0;while(i<performanceTimeline.length){if(performanceTimeline[i].entryType!==entryType){i++;continue;}
+if(typeof name!=="undefined"&&performanceTimeline[i].name!==name){i++;continue;}
+performanceTimeline.splice(i,1);}};if(typeof window.performance.getEntries!=="function"||hasNativeGetEntriesButNotUserTiming){var origGetEntries=window.performance.getEntries;window.performance.getEntries=function(){ensurePerformanceTimelineOrder();var entries=performanceTimeline.slice(0);if(hasNativeGetEntriesButNotUserTiming&&origGetEntries){Array.prototype.push.apply(entries,origGetEntries.call(window.performance));entries.sort(function(a,b){return a.startTime-b.startTime;});}
+return entries;};}
+if(typeof window.performance.getEntriesByType!=="function"||hasNativeGetEntriesButNotUserTiming){var origGetEntriesByType=window.performance.getEntriesByType;window.performance.getEntriesByType=function(entryType){if(typeof entryType==="undefined"||(entryType!=="mark"&&entryType!=="measure")){if(hasNativeGetEntriesButNotUserTiming&&origGetEntriesByType){return origGetEntriesByType.call(window.performance,entryType);}
+return[];}
+if(entryType==="measure"){ensurePerformanceTimelineOrder();}
+var entries=[];for(i=0;i<performanceTimeline.length;i++){if(performanceTimeline[i].entryType===entryType){entries.push(performanceTimeline[i]);}}
+return entries;};}
+if(typeof window.performance.getEntriesByName!=="function"||hasNativeGetEntriesButNotUserTiming){var origGetEntriesByName=window.performance.getEntriesByName;window.performance.getEntriesByName=function(name,entryType){if(entryType&&entryType!=="mark"&&entryType!=="measure"){if(hasNativeGetEntriesButNotUserTiming&&origGetEntriesByName){return origGetEntriesByName.call(window.performance,name,entryType);}
+return[];}
+if(typeof entryType!=="undefined"&&entryType==="measure"){ensurePerformanceTimelineOrder();}
+var entries=[];for(i=0;i<performanceTimeline.length;i++){if(typeof entryType!=="undefined"&&performanceTimeline[i].entryType!==entryType){continue;}
+if(performanceTimeline[i].name===name){entries.push(performanceTimeline[i]);}}
+if(hasNativeGetEntriesButNotUserTiming&&origGetEntriesByName){Array.prototype.push.apply(entries,origGetEntriesByName.call(window.performance,name,entryType));entries.sort(function(a,b){return a.startTime-b.startTime;});}
+return entries;};}}
+if(typeof window.performance.mark!=="function"){window.performance.userTimingJsUserTiming=true;prefixes=["webkit","moz","ms"];methods=["mark","measure","clearMarks","clearMeasures"];for(i=0;i<methods.length;i++){for(j=0;j<prefixes.length;j++){methodTest=prefixes[j]+methods[i].substr(0,1).toUpperCase()+methods[i].substr(1);if(typeof window.performance[methodTest]==="function"){window.performance[methods[i]]=window.performance[methodTest];window.performance.userTimingJsUserTimingPrefixed=true;}}}
+var marks={};if(typeof window.performance.mark!=="function"){window.performance.mark=function(markName){var now=window.performance.now();if(typeof markName==="undefined"){throw new SyntaxError("Mark name must be specified");}
+if(window.performance.timing&&markName in window.performance.timing){throw new SyntaxError("Mark name is not allowed");}
+if(!marks[markName]){marks[markName]=[];}
+marks[markName].push(now);addToPerformanceTimeline({entryType:"mark",name:markName,startTime:now,duration:0});};}
+if(typeof window.performance.clearMarks!=="function"){window.performance.clearMarks=function(markName){if(!markName){marks={};}else{marks[markName]=[];}
+clearEntriesFromPerformanceTimeline("mark",markName);};}
+if(typeof window.performance.measure!=="function"){window.performance.measure=function(measureName,startMark,endMark){var now=window.performance.now();if(typeof measureName==="undefined"){throw new SyntaxError("Measure must be specified");}
+if(!startMark){addToPerformanceTimeline({entryType:"measure",name:measureName,startTime:0,duration:now});return;}
+var startMarkTime=0;if(window.performance.timing&&startMark in window.performance.timing){if(startMark!=="navigationStart"&&window.performance.timing[startMark]===0){throw new Error(startMark+" has a timing of 0");}
+startMarkTime=window.performance.timing[startMark]-window.performance.timing.navigationStart;}else if(startMark in marks){startMarkTime=marks[startMark][marks[startMark].length-1];}else{throw new Error(startMark+" mark not found");}
+var endMarkTime=now;if(endMark){endMarkTime=0;if(window.performance.timing&&endMark in window.performance.timing){if(endMark!=="navigationStart"&&window.performance.timing[endMark]===0){throw new Error(endMark+" has a timing of 0");}
+endMarkTime=window.performance.timing[endMark]-window.performance.timing.navigationStart;}else if(endMark in marks){endMarkTime=marks[endMark][marks[endMark].length-1];}else{throw new Error(endMark+" mark not found");}}
+var duration=endMarkTime-startMarkTime;addToPerformanceTimeline({entryType:"measure",name:measureName,startTime:startMarkTime,duration:duration});};}
+if(typeof window.performance.clearMeasures!=="function"){window.performance.clearMeasures=function(measureName){clearEntriesFromPerformanceTimeline("measure",measureName);};}}
+}(window));

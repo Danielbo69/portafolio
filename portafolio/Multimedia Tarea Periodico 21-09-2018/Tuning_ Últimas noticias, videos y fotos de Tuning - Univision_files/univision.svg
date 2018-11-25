@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>univision</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="98.8430006%" y1="99.8757684%" x2="35.773649%" y2="36.0121066%" id="linearGradient-1">
+            <stop stop-color="#11E11E11E" stop-opacity="0.545938952" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.119451993" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="9.002 5.47795 9.002 0.934 0.336 0.934 0.336 10.0219 9.002 10.0219 9.002 5.47795"></polygon>
+        <polygon id="path-4" points="7.06086665e-17 6.6761 7.06086665e-17 0.7701 1.8206 0.7701 1.8206 6.6761 0 6.6761"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="320-Footer-" transform="translate(-11.000000, -371.000000)">
+            <g id="univision" transform="translate(11.000000, 371.000000)">
+                <g id="Group-4">
+                    <g id="Uforia-Icon-Copy-2">
+                        <rect id="Rectangle-5" fill="#F22723" x="0" y="0" width="25" height="25" rx="5"></rect>
+                        <rect id="Rectangle-5" fill="#F22723" x="0" y="0" width="25" height="25" rx="5"></rect>
+                        <rect id="Rectangle-5" fill="#C2007F" x="0" y="0" width="25" height="25" rx="5"></rect>
+                        <path d="M25,11.1328589 L19.8746995,6.00755838 L19.8992455,14.049347 L18.1937197,16.3153174 L16.9338079,18.5575798 L13.0029909,20.4245018 L10.5115612,20.1206541 L8.49806693,20.1206541 L7.97922896,19.5667283 L13.4125007,25 L20,25 C22.7614237,25 25,22.7614237 25,20 L25,11.1328589 Z" id="Combined-Shape" fill-opacity="0.8" fill="url(#linearGradient-1)" style="mix-blend-mode: multiply;"></path>
+                    </g>
+                    <g id="Page-1" transform="translate(5.000000, 4.000000)">
+                        <g id="Group-3" transform="translate(6.000000, 0.065600)">
+                            <mask id="mask-3" fill="white">
+                                <use xlink:href="#path-2"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <path d="M0.336,10.0219 C3.725,10.0219 7.969,9.8639 9.002,9.1689 L9.002,9.1839 L9.002,1.8819 C8.316,1.1159 3.952,0.9339 0.339,0.9339 L0.336,10.0219 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-3)"></path>
+                        </g>
+                        <path d="M2.3114,9.7776 C2.3624,9.7806 2.4864,9.7856 2.5774,9.7856 C3.8174,9.7856 5.1574,9.5946 5.8274,9.1766 L5.8274,4.7946 C4.5974,3.3586 2.3704,2.1836 0.6884,2.1836 C0.2494,2.1836 0.0674,2.2836 0.0674,2.4986 C0.0674,3.9716 2.3114,5.8596 2.3114,9.7776" id="Fill-4" fill="#FFFFFF"></path>
+                        <g id="Group-8" transform="translate(0.000000, 3.065600)">
+                            <mask id="mask-5" fill="white">
+                                <use xlink:href="#path-4"></use>
+                            </mask>
+                            <g id="Clip-7"></g>
+                            <path d="M1.8206,6.6761 C1.8206,3.6241 0.3916,2.0771 -0.0004,0.7701 L-0.0004,6.2381 C0.4816,6.4391 1.0266,6.6111 1.8206,6.6761" id="Fill-6" fill="#FFFFFF" mask="url(#mask-5)"></path>
+                        </g>
+                        <path d="M6.336,10.6565 C6.336,14.3525 6.619,16.1445 7.349,17.0655 C14.459,17.0655 15.002,10.2955 15.002,9.8055 C13.969,10.4995 9.725,10.6565 6.336,10.6565" id="Fill-9" fill="#FFFFFF"></path>
+                        <path d="M5.755,10.6635 C3.594,10.6635 1.004,10.3375 0.002,9.8565 C0.002,12.0145 1.7,16.3615 6.723,17.0505 C6.078,16.1785 5.755,14.3545 5.755,10.6635" id="Fill-11" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
