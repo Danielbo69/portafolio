@@ -1,0 +1,523 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background: url("img/bg-patt.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    font-family: "Josefin Sans", sans-serif; */
+}
+
+#contenedor {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100% !important;
+}
+
+aside {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 657px;
+    margin: 0 auto;
+    max-width: 1440px;
+    overflow: hidden;
+    padding: 0;
+    width: 100% !important;
+}
+
+section {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0;
+    width: 100% !important;
+}
+
+#navegacion {
+    background: #02223abd;
+    width: 100%;
+    position: fixed;
+}
+
+#navegacion ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+}
+
+#navegacion ul li {
+    list-style: none;
+    padding-right: 15px;
+    padding-top: 10px;
+    display: flex;
+}
+
+#navegacion ul li:hover {
+    list-style: none;
+    padding: 10px;
+    padding-bottom: 0px;
+    display: flex;
+    border-bottom: 1px solid #fff;
+}
+
+#navegacion a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+}
+
+#navegacion a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+#pie {
+    width: 100%;
+    height: 70px;
+    color: #fff;
+    background: #02223abd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* position: fixed; */
+    /* position: fixed; */
+}
+
+#redirecionar {
+    background: #435b6d;
+    border-radius: 50%;
+}
+
+.botonTop {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    height: 60%;
+}
+
+.botonTop img {
+    width: 70px;
+    border-radius: 50%;
+}
+
+.enlaces {
+    color: #fff;
+    position: fixed;
+    top: 290px;
+}
+.enlaces1 {
+    color: #fff;
+    position: fixed;
+    top: 290px;
+}
+
+.enlaces ul {
+    height: 100%;
+    padding-left: 0px;
+    margin: 0px;
+}
+
+.enlaces ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+.enlaces a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+.enlaces1 ul {
+    height: 100%;
+    padding-left: 0px;
+    margin: 0px;
+}
+
+.enlaces1 ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+.enlaces1 a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.navegacionIzquierda {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+.navegacionDerecha{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+#bloque1 {
+    background-image: url("../img/Hipster.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque2 {
+    background-image: url("../img/fashion2.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque3 {
+    background-image: url("../img/dapper.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque4 {
+    background-image: url("../img/fashion.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque5 {
+    background-image: url("../img/animacion.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque6 {
+    background-image: url("../img/cover-hipster1.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque7 {
+    /* background-image: url("../img/AdidasStoreVaughanMills.jpg");
+    background-attachment: fixed;
+    background-repeat: round; */
+    background: #435b6d;
+    justify-content: center;
+    align-items: center;
+}
+
+#bloque8 {
+    background-image: url("../img/contactofondo.jpg");
+    background-attachment: fixed;
+    background-repeat: round;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactanos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #02223abd;
+}
+
+.label-titulo{
+    width: 60%;
+    padding: 5px;
+    color: #fff;
+  }
+  
+  .input-contac {
+    width: 60%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  #Areatext {
+    width: 60%;
+    max-width: 60%;
+    height: 230px;
+    max-height: 230px;
+  }
+
+h4 {
+    font-size: 25px;
+    background: #00000091;
+    color: #fff !important;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+
+.titulos-contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .navbar{
+    border-radius: 0px !important;
+    }
+    .navbar-nav>li {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+.navbar li {
+    padding: 10px;
+}
+
+#bloque1 h2 {
+    background-color: #02223abd;
+    color: #fff;
+    bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+    display: block;
+    font-size: 40px;
+    padding: 60px;
+    font-weight: bold;
+    margin-top: 3em;
+    text-align: center;
+    text-shadow: 1px 1px 1px #666;
+    text-transform: uppercase;
+    width: 50%;
+}
+.bg {
+    background: #02223abd;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.79) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff !important;
+    background: #6c4832;
+}
+
+.bottomTop {
+    background-image: url("../img/inconformista.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    top: 610px;
+    padding-right: 40px;
+}
+
+#bloque2 h3 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+}
+
+#bloque2 h2 {
+    text-align: center;
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    padding: 15px;
+}
+
+#bloque3 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#bloque4 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#bloque5 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#bloque6 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#bloque7 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#bloque8 h2 {
+    width: 100%;
+    height: 10%;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02223abd;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+#logo {
+    display: block;
+    margin: 6em auto 0;
+    opacity: 0.8;
+    width: 200px;
+}
+
+#bloque2 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque3 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque4 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque5 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque6 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque7 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}
+
+#bloque8 p {
+    background-color: #02223abd;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 7em auto;
+    max-width: 800px;
+    padding: 1.5em;
+}

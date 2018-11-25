@@ -1,0 +1,6 @@
+/*
+ Quantcast measurement tag
+ Copyright (c) 2008-2018, Quantcast Corp.
+*/
+(function(b,h,g){var k=function(a,c,d){return a?"nc"===a?!c||!d||0>c.indexOf(d):"eq"===a?c===d:"sw"===a?0===c.indexOf(d):"ew"===a?(a=c.length-d.length,c=c.lastIndexOf(d,a),-1!==c&&c===a):"c"===a?0<=c.indexOf(d):!1:!1},e=function(a,c,d){var b;if(h.top===h.self)b=g.location.href;else{b=g.referrer;var e=g.createElement("a");e.href=b;b=e.href}k(c,b,d)?a(b):a(!1)},f=function(a){return"array"==={}.toString.call(a).match(/\s([a-zA-Z]+)/)[1].toLowerCase()?{labels:a.join(",")}:{labels:""+a}};__qc.apply(null,
+["rules",[b,null,[[f,"Univision.Sports (Deportes)"]],[[e,"c","univision.com/deportes"]]],[b,null,[[f,"Univision.Entertainment (Entretenimiento)"]],[[e,"c","univision.com/entretenimiento"]]],[b,null,[[f,"Univision.Homepage"]],[[e,"eq","https://www.univision.com/"]]],[b,null,[[f,"Univision.Local.Miami"]],[[e,"c","univision.com/miami"]]],[b,null,[[f,"Univision.News (Noticias)"]],[[e,"c","univision.com/noticias"]]],[b,null,[[f,"Univision"]],[[e,"c","univision.com"]]]])})("p-mJ8MZ6jeZTTad",window,document);

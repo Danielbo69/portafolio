@@ -1,0 +1,29 @@
+//<script>
+bouncex.state = {"newvid":false,"iol":false,"tn":1537564207,"pvid":6,"gdpr":false,"casl":false,"rc":false,"mobile":false,"vip":"200.82.183.69","geo":{"country_code":"VE","country_code3":"VEN","country_name":"Venezuela","region":"23","city":"Maracaibo","postal_code":null,"latitude":10.631699999999995,"longitude":-71.640600000000006,"area_code":null,"dma_code":null,"metro_code":null,"continent_code":"SA","zip":null,"country":"VE","region_name":"Zulia"}};
+bouncex.cookie = {"v":{"completed_signup":false},"sid":15,"fvt":1537550820,"vid":1537561740037984,"ao":1,"lp":"https%3A%2F%2Fcnnespanol.cnn.com%2Fcategory%2Fautos%2F","as":0,"vpv":6,"d":"d","r":"www.google.co.ve","cvt":1537561740,"gcr":14,"m":0,"did":"1188174570630519172","lvt":1537564207,"campaigns":{"822210":{"lvt":1537549707,"lavid":1,"la":1537549592,"fsa":1537549592,"as":1,"ao":1,"wc":1537549634}}};
+bouncex.brandStyles = false;
+bouncex.webfonts = false;
+bouncex.campaigns = false;
+bouncex.creatives = false;
+bouncex.debug = false;
+bouncex.testmode = {"bxtest":false,"office":false,"bxdev":false};
+
+if (bouncex.gbi) {
+	bouncex.gbi.stacks = false;
+}
+
+if (bouncex.website) {
+	bouncex.website.gbi2Enabled = false;
+	bouncex.website.sspConfig = false;
+}
+
+
+bouncex.tryCatch(function(){
+	if(bouncex.browser.msie){
+		bouncex.setTimeout2(function(){
+			bouncex.init();
+		}, 0);
+	} else {
+		bouncex.init();
+	}
+})();
